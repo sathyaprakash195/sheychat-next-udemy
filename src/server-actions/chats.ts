@@ -78,6 +78,7 @@ export const UpdateChat = async ({
       message: "Chat updated successfully",
     };
   } catch (error: any) {
+    console.log(error);
     return {
       error: error.message,
     };

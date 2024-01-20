@@ -53,7 +53,7 @@ function GroupForm({
           payload: payload,
         });
       } else {
-        await CreateNewChat(payload);
+        response = await CreateNewChat(payload);
       }
       if (response.error) throw new Error(response.error);
       message.success(
@@ -63,7 +63,9 @@ function GroupForm({
       );
       router.refresh();
       router.push("/");
-    } catch (error) {
+    } catch (error: any) {
+      console.log(error);
+      message.error(error.message);
     } finally {
       setLoading(false);
     }
