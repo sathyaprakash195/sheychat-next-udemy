@@ -30,12 +30,12 @@ function ChatCard({ chat }: { chat: ChatType }) {
     chatImage = receipient?.profilePicture!;
   }
 
-  if (chat.lastMessage) {
-    lastMessage = chat.lastMessage.text;
+  if (chat?.lastMessage) {
+    lastMessage = chat?.lastMessage?.text;
     lastMessageSenderName =
-      chat.lastMessage.sender._id === currentUserData?._id
+      chat?.lastMessage?.sender._id === currentUserData?._id
         ? "You :"
-        : `${chat.lastMessage.sender.name.split(" ")[0]} :`;
+        : `${chat?.lastMessage?.sender.name.split(" ")[0]} :`;
     lastMessageTime = formatDateTime(chat.lastMessage.createdAt);
   }
 
@@ -43,8 +43,8 @@ function ChatCard({ chat }: { chat: ChatType }) {
 
   const unreadCounts = () => {
     if (
-      !chat.unreadCounts ||
-      !chat.unreadCounts[currentUserData?._id!] ||
+      !chat?.unreadCounts ||
+      !chat?.unreadCounts[currentUserData?._id!] ||
       chat._id === selectedChat?._id
     ) {
       return null;
